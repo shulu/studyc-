@@ -59,7 +59,7 @@ bool Point::isTriangle(Point m, Point n)
 	}
 	
 }
-int main()
+int main1()
 {
 	Point pa, pb, pc; 
 	double distance;
@@ -77,7 +77,7 @@ int main()
 	pb.setY(tmpY);
 	distance = pa.calculateDistanceBetweenPoint(pb);
 	cout<<"第一个定点到第二个定点的距离为"<<distance<<endl;
-	cout<<"请输入第二个坐标 x y"<<endl;
+	cout<<"请输入第三个坐标 x y"<<endl;
 	cin>>tmpX>>tmpY;
 	pc.setX(tmpX);
 	pc.setY(tmpY);
