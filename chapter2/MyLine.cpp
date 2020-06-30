@@ -9,6 +9,10 @@ class MyLine
 			m = x;
 			n = y;
 		}
+		/*
+		* 计算直线的斜率 
+		* 斜率的计算方法为(y2-y1)/(x2-x1) 
+		*/ 
 		double calculateSlope()
 		{
 			double k;
@@ -21,10 +25,28 @@ class MyLine
 			cout<<"k="<<k<<endl;
 			return k;
 		}
+		//现根据直线的一般式方程 AX+BY+C
+		//A = Y2 - Y1
+		//B = X1 - X2
+		//C = X2*Y1 - X1*Y2
+		//则点x到直线的距离为 abs(a*x+b*y+c)/sqrt(pow(a,2)+pow(b,2))
 		double calculatePointToLine(Point x)
 		{
-			
+			double a, b, c, distance;
+			int x1, y1, x2, y2;
+			x1 = m.getX();
+			x2 = n.getX();
+			y1 = m.getY();
+			y2 = n.getY();
+			a =  y2-y1;
+			b = x1-x2;
+			c = x2*y1-x1*y2;
+			distance = abs(a*x.getX()+b*x.getY()+c)/sqrt(pow(a,2)+pow(b,2));
+			return distance;
 		}
+		//计算直线是否经过定点 
+		// k为直线斜率 
+		// 公式为i y-b = k(x-a) 
 		bool isInLine(Point x)
 		{
 			double j, k, l; 
@@ -47,7 +69,7 @@ int main()
 	MyLine line; 
 	Point pa, pb, pc; 
 	int tmpX,tmpY;
-	double k;
+	double k,distance;
 	bool inLine;
 	cout<<"请输入第一个坐标 x y"<<endl;
 	cin>>tmpX>>tmpY;
@@ -67,6 +89,7 @@ int main()
 	pc.setX(tmpX);
 	pc.setY(tmpY);
 	inLine = line.isInLine(pc);
+	distance = line.calculatePointToLine(pc);
 	if(inLine)
 	{
 		cout<<"定点("<<pc.getX()<<","<<pc.getY()<<")经过";
@@ -74,5 +97,5 @@ int main()
 		cout<<"定点("<<pc.getX()<<","<<pc.getY()<<")不经过";
 	}
 	cout<<"直线("<<pa.getX()<<","<<pa.getY()<<")";
-	cout<<" ("<<pb.getX()<<","<<pb.getY()<<")"<<endl;
+	cout<<" ("<<pb.getX()<<","<<pb.getY()<<")"<<"距离为"<<distance<<endl;
 } 
