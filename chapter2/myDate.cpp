@@ -24,6 +24,9 @@ myDate::myDate(int y, int m, int d)
 {
 	year = y; month = m; day = d;
 }
+//构造函数的定义 
+myDate::myDate():year(1970),month(1),day(1);
+myDate::myDate(int y, int m, int d):year(y),monthm1),day(d);
 void myDate::setDate(int y, int m, int d)
 {
 	year = y; month = m; day = d;
