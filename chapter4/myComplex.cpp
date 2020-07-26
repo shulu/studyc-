@@ -20,13 +20,14 @@ class myComplex
 		friend myComplex operator-(const myComplex &c1, const myComplex &c2); //友元函数 
 		friend myComplex operator-(const myComplex &c1, double r);
 		friend myComplex operator-(double r, const myComplex &c1);
+		friend myComplex operator*(const myComplex &c1, const myComplex &c2);
 		friend ostream &operator<<(ostream & os, const myComplex &c); //友元 插入 
 		friend istream &operator>>(istream & is, myComplex & c);	//友元  提取 
 		ostream & operator<<(ostream & os); //成员函数 插入 
-		//operator double()	//重载强制类型转换符double 
-		//{
-		//	return real;
-		//}
+		operator double()	//重载强制类型转换符double 
+		{
+			return real;
+		}
 		myComplex &operator=(const myComplex &c);
 		myComplex &operator=(double);
 };
@@ -80,6 +81,13 @@ myComplex operator-(double r, const myComplex &c1)
 {
 	return myComplex(r-c1.real, -c1.image);
 }
+//a+bi * c+di = (ac-bd)+(bc+ad)i
+myComplex operator*(const myComplex &c1, const myComplex &c2)
+{
+	double r = (c1.real*c2.real)-(c1.image*c2.image);
+	double i = (c1.image*c2.real)+(c1.real*c2.image);
+	return myComplex(r, i);
+}
 ostream & operator<<(ostream & os, const myComplex & c) 
 {
 	if(c.image >= 0)
@@ -123,6 +131,9 @@ myComplex &myComplex::operator=(double r)
 int main()
 {
 	myComplex c1(1.2,3.4), c2(3,4), c3, c4, res;
+	cout<<(double)c1<<endl;
+	res = c1*c2;
+	res.outCom("执行 res = c1*c2->\tres");
 	c1.outCom("\t\t\tc1");
 	c2.outCom("\t\t\tc2");
 	res = c1+c2;
