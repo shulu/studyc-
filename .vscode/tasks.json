@@ -7,6 +7,8 @@
             "command": "C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe",
             "args": [
                 "-g",
+                "-fexec-charset=GBK",   // 处理mingw中文编码问题
+                "-finput-charset=UTF-8",// 处理mingw中文编码问题
                 "${file}",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
